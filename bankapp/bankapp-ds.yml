@@ -4,21 +4,21 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: bankapp
+  name: sample
 spec:
   replicas: 2
   revisionHistoryLimit: 1
   selector:
     matchLabels:
-      app: bankapp
+      app: sample
   template:
     metadata:
       labels:
-        app: bankapp
+        app: sample
     spec:
       containers:
-      - name: bankapp
-        image: adijaiswal/bankapp:v4
+      - name: sample
+        image: thummalalakshmanreddy/sample:1.0
         ports:
         - containerPort: 8080
         env:
@@ -33,11 +33,11 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: bankapp-service
+  name: sample-service
 spec:
   type: LoadBalancer
   ports:
   - port: 80
     targetPort: 8080
   selector:
-    app: bankapp
+    app: sample
